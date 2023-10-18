@@ -1,21 +1,22 @@
-#define _GNU_SOURCE
+#define _POSIX_C_SOURCE 200809L
 #include "monty.h"
 #include <stdio.h>
+bus_t bus = {NULL, NULL, NULL, 0};
 
-stack_t *stack = NULL;
 /**
- * main - Entry point of the Monty interpreter program.
- * @argc: The number of command-line arguments.
- * @argv: An array containing the command-line arguments.
- *
- * Return: 0 on success, or an exit code on failure.
+ * main - Entry point
+ * @argc: Number of arguments
+ * @argv: Array of command-line arguments
+ * Return: 0 on success
  */
 int main(int argc, char *argv[])
 {
+	char *content;
 	FILE *file;
-	char *line = NULL;
-	size_t len = 0;
-	unsigned int line_number = 1;
+	size_t size = 0;
+	ssize_t read_line = 1;
+	stack_t *stack = NULL;
+	unsigned int counter = 0;
 
 	if (argc != 2)
 	{
@@ -23,72 +24,25 @@ int main(int argc, char *argv[])
 		exit(EXIT_FAILURE);
 	}
 	file = fopen(argv[1], "r");
-	if (file == NULL)
+	bus.file = file;
+	if (!file)
 	{
 		fprintf(stderr, "Error: Can't open file %s\n", argv[1]);
 		exit(EXIT_FAILURE);
 	}
-	while (getline(&line, &len, file) != -1)
+	while (read_line > 0)
 	{
-		char *opcode, *arg;
-		opcode = strtok(line, " \t\n");
-		if (opcode && opcode[0] != '#')
+		content = NULL;
+		read_line = getline(&content, &size, file);
+		bus.content = content;
+		counter++;
+		if (read_line > 0)
 		{
-			arg = strtok(NULL, " \t\n");
-			if (strcmp(opcode, "push") == 0)
-			{
-				if (!arg)
-				{
-					fprintf(stderr, "L%u: usage: push integer\n", line_number);
-					free(line);
-					fclose(file);
-					exit(EXIT_FAILURE);
-				}
-				if (!isNumeric(arg))
-				{
-					fprintf(stderr, "L%u: usage: push integer\n", line_number);
-					free(line);
-					fclose(file);
-					exit(EXIT_FAILURE);
-				}
-				push(&stack, atoi(arg));
-			}
-			else if (strcmp(opcode, "pall") == 0)
-			{
-				pall(stack);
-			}
-			else if (strcmp(opcode, "pint") == 0)
-			{
-				pint(stack, line_number);
-			}
-			else if (strcmp(opcode, "pop") == 0)
-			{
-				pop(&stack, line_number);
-			}
-			else if (strcmp(opcode, "swap") == 0)
-			{
-				swap(&stack, line_number);
-			}
-			else if (strcmp(opcode, "add") == 0)
-			{
-				add(&stack, line_number);
-			}
-			else if (strcmp(opcode, "nop") == 0)
-			{
-				nop(&stack, line_number);
-			}
-			else
-			{
-				fprintf(stderr, "L%u: unknown instruction %s\n", line_number, opcode);
-				free(line);
-				fclose(file);
-				exit(EXIT_FAILURE);
-			}
+			process(content, &stack, counter, file);
 		}
-		line_number++;
+		free(content);
 	}
-	free(line);
-	processMontyFile(file);
+	free_stack(stack);
 	fclose(file);
-	return (0);
+return (0);
 }
