@@ -4,7 +4,6 @@
  * set_queue_mode - Set the queue mode.
  * @stack: Stack head
  * @line_number: Line number
- * Return: No return
  */
 void set_queue_mode(stack_t **stack, unsigned int line_number)
 {

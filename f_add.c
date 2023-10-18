@@ -4,8 +4,7 @@
  * customAdd - Adds the top two elements of the stack.
  * @head: Pointer to the stack head.
  * @lineNumber: Line number where the operation is executed.
- * Return: No return value.
- */
+  */
 void customAdd(stack_t **head, unsigned int lineNumber)
 {
 	stack_t *current;
@@ -36,7 +35,6 @@ void customAdd(stack_t **head, unsigned int lineNumber)
  * pushToStack - Add a new node to the stack.
  * @head: Pointer to the head of the stack.
  * @value: The value to be added to the new node.
- * Return: No return value.
  */
 void pushToStack(stack_t **head, int value)
 {

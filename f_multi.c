@@ -4,8 +4,7 @@
  * multiplyStack - Multiplies the top two elements of the stack.
  * @stack: Stack head
  * @line_number: Line number
- * Return: No return
- */
+  */
 void multiplyStack(stack_t **stack, unsigned int line_number)
 {
 	stack_t *current;

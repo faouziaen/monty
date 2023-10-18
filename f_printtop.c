@@ -4,8 +4,7 @@
  * print_top - Prints the top element of the stack.
  * @stack: Stack head
  * @line_number: Line number
- * Return: No return
- */
+  */
 void print_top(stack_t **stack, unsigned int line_number)
 {
 	if (*stack == NULL)

@@ -4,8 +4,7 @@
  * push_node - Adds a node to the stack.
  * @stack: Stack head
  * @line_number: Line number
- * Return: No return
- */
+  */
 void push_node(stack_t **stack, unsigned int line_number)
 {
 	int n, j = 0, flag = 0;

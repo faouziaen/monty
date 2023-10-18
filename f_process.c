@@ -1,12 +1,14 @@
 #include "monty.h"
+
 /**
-* process - executes the opcode
-* @stack: head linked list - stack
-* @counter: line_counter
-* @file: poiner to monty file
-* @content: line content
-* Return: to 1
-*/
+ * process - Execute the given opcode and process the Monty bytecode.
+ * @content: A line of Monty bytecode.
+ * @stack: Pointer to the head of the stack.
+ * @counter: Line number being processed.
+ * @file: Pointer to the Monty bytecode file.
+ *
+ * Return: 0 on success, 1 on failure.
+ */
 int process(char *content, stack_t **stack, unsigned int counter, FILE *file)
 {
 	instruction_t opst[] = {

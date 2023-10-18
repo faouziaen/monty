@@ -4,8 +4,7 @@
  * divideElements - Divides the top two elements of the stack.
  * @stack: Pointer to the stack.
  * @line_number: Line number.
- * Return: No return value.
- */
+  */
 void divideElements(stack_t **stack, unsigned int line_number)
 {
 	stack_t *currentNode;

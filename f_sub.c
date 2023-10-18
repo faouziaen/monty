@@ -5,7 +5,6 @@
  * second top element of the stack.
  * @stack: Stack head
  * @counter: Line number
- * Return: No return
  */
 void subtract(stack_t **stack, unsigned int counter)
 {

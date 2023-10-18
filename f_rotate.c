@@ -4,7 +4,6 @@
  * rot_left - Rotates the stack to the top.
  * @stack: Stack head
  * @counter: Line number
- * Return: No return
  */
 void rot_left(stack_t **stack,  __attribute__((unused)) unsigned int counter)
 {
@@ -30,8 +29,7 @@ void rot_left(stack_t **stack,  __attribute__((unused)) unsigned int counter)
  * rot_right - Rotates the stack to the bottom.
  * @stack: Stack head
  * @counter: Line number
- * Return: No return
- */
+  */
 void rot_right(stack_t **stack, __attribute__((unused)) unsigned int counter)
 {
 	stack_t *copy;

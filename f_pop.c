@@ -4,8 +4,7 @@
  * pop_top - Removes the top element from the stack.
  * @stack: Stack head
  * @line_number: Line number
- * Return: No return
- */
+  */
 void pop_top(stack_t **stack, unsigned int line_number)
 {
 	stack_t *top;
